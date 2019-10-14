@@ -1,0 +1,76 @@
+MYSHELL - USER MANUAL - JOHN MURRAY, OCTOBER 2019
+
+This is a simple implementation of a shell, or command-line interpreter.
+It has almost as much functionality as any shell you might have used that is 
+builtin to your computer system (bash, tcsh, etc.). 
+
+COMMANDS:
+The functionality is based on executing and manipulating programs, files, and commands.
+The commands can be categorized into builtin and external commands.
+Builtin commands are coded directly in the shell program, whereas external commands include 
+any command that is on the system running the shell, including commands contained in shells
+builtin to the system.
+Builtin commands are simply functions within the program, namely:
+    cd <directory> - Change the current default directory to <directory>. If the <directory> 
+    argument is not present, report the current directory. 
+
+    clr - clear the screen
+
+    dir <directory> - List the contents of directory <directory>
+
+    environ - List all the environment strings
+
+    echo <comment> - Display <comment> to stdout followed by a new line 
+
+    help - Display the user manual 
+
+    pause - Pause operation of the shell until 'Enter' is pressed
+
+    quit - Quit the shell
+
+    path - display the path from which the shell has been executed
+
+Any external command that is called will create a copy of the current process that is running, 
+and execute the command specified, then the original process will return to the prompt.
+Some external commands include ls, wc, man, gcc, rm, mkdir, nice, etc...
+(Note that many commands require arguments to do anything of substance)
+
+OPERATORS:
+There are several special operators featured in this shell that offer powerful functionality:
+    Redirection - '<', '>', and '>>' - redirect input or output of command to specified file 
+    use: 
+        <program> < <file>
+        <program> > <file>
+        <program> >> <file>
+
+    Input Redirection - '<' - Redirects stdin of program given to file specified. Essentially
+    reads from that file rather than reading from the keyboard
+
+    Output Redirection - '>' or '>>' - Displays output of program given to file specified rather 
+    than the screen. 
+    Single '>' means that if the given file already exists, clear its contents and write to the 
+    beginning of the file, or create and write to file with that name if it does not exist.
+    Double '>>' means that if the given file already exists, write to the end of the file, or create
+    and write to file with that name if it does not exist.
+
+    Pipes - '|' - redirect output of one program to input of other program
+    use: <program1> <optionalargs> | <program2> <optargs>
+
+    Parallel - '&' - Run multiple commands in parallel (at the same time)
+    use: <program> <optionalargs> & <program> & <command> <optargs>
+    Simple use this operator if you want to execute multiple commands at once
+
+    Background Execution - '&' - Run program in background
+    use: <command> <args> &
+    If the '&' character is at the end of the command line, the shell executes the command specified,
+    and does not wait for it to finish, but immediately returns to user prompt
+
+BATCHFILE:
+Instead of running the shell normally and typing commands into the prompt, you can include a batchfile 
+as an argument when you invoke the shell. You can do this by typing commands, one per line, into a .txt
+file. Say the file is called batch.txt. 
+When you open the shell, type the command:
+        myshell batch.txt
+
+NOTE: for more information on any external command, type "man <command>" into the shell to open the 
+manual page for that command
